@@ -45,8 +45,12 @@ const CountryDetails = () => {
 
     }, [])
 
+    if(!population){
+        return <div className="text-center"><p>Loading.......</p></div>;
+    }
+
     return (
-    showData ? ( 
+        showData ? ( 
         <div className="container m4">
             <div className="row">
                 <div className="col-md-3"></div>
@@ -70,7 +74,7 @@ const CountryDetails = () => {
                 <div className="col-md-3"></div>
             </div>
         </div>
-        ) : <p>Loading.........</p>
+        ) : null
     )
 }
 

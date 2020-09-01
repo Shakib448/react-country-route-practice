@@ -7,7 +7,13 @@ import CountryFound from '../CountryFount/CountryFound';
 const Home = () => {
 
     const [country,
-        setCountry] = useState([]);
+        setCountry] = useState([{}]); // Try to console log and look at the data
+
+    const lData = country[0];
+    const {name} = lData; // This method is use for use loading......
+
+
+    //Same as the countryDetails.............
 
     useEffect(() => {
 
@@ -16,7 +22,6 @@ const Home = () => {
                 const res = await Axios.get('https://restcountries.eu/rest/v2/all')
                 const data = res.data;
                 setCountry(data);
-                console.log(data);
             } catch (error) {
                 console.log(error);
             }
@@ -24,7 +29,12 @@ const Home = () => {
         fetchedCountry();
     }, [])
 
+    if(!name){
+        return <div className="text-center"><p>Loading.......</p></div>;
+    }
+
     return (
+        lData ? ( 
         <div>
             <div className="text-center">
             <h1>Total Country : {country.length}</h1>
@@ -35,8 +45,8 @@ const Home = () => {
 }
                 </div>
             </div>
-
         </div>
+        ): null
     )
 }
 
